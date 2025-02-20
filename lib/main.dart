@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sa7ety/core/services/localstorage/local_storage.dart';
+import 'package:sa7ety/feature/intro/splash/splash.dart';
 import 'package:sa7ety/firebase_options.dart';
 
 // import 'firebase_options.dart';
@@ -21,9 +22,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+        body: SplashScreen(),
       ),
     );
   }
