@@ -17,13 +17,19 @@ class _OnboradingState extends State<Onborading> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Text(
-            "تخطي",
-            style: getBodyStyle(
-              color: AppColors.primary,
-              fontSize: 18,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () {},
+              child: Text(
+                "تخطي",
+                style: getBodyStyle(
+                  color: AppColors.primary,
+                  fontSize: 18,
+                ),
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
