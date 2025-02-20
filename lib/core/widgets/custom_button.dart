@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:sa7ety/core/utils/appcolors.dart';
+import 'package:sa7ety/core/utils/textstyle.dart';
+
+class CustomButton extends StatelessWidget {
+  const CustomButton(
+      {super.key,
+      required this.text,
+      required this.onPressed,
+      this.width,
+      this.height,
+      this.radius});
+  //* variables
+  final String text;
+  final Function() onPressed;
+  final double? width;
+  final double? radius;
+  final double? height;
+
+  //* widget
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height ?? 50,
+      width: width ?? double.infinity,
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: AppColors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(radius ?? 15))),
+          onPressed: onPressed,
+          child: Text(
+            text,
+            style: getTitleStyle(color: AppColors.white, fontSize: 16),
+          )),
+    );
+  }
+}

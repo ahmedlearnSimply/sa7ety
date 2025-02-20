@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
+import 'dart:ui';
 
 showErrorDialog(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
