@@ -10,6 +10,7 @@ TextStyle getTitleStyle(
     fontSize: fontSize,
     color: color ?? AppColors.primary,
     fontWeight: fontWeight,
+    fontFamily: 'cairo',
   );
 }
 
@@ -22,6 +23,7 @@ TextStyle getBodyStyle(
       fontSize: fontSize,
       color: color ?? AppColors.black,
       fontWeight: fontWeight,
+      fontFamily: 'cairo',
     );
 
 //* get small style
@@ -31,6 +33,7 @@ TextStyle getSmallStyle(
         FontWeight? fontWeight = FontWeight.w500}) =>
     TextStyle(
       fontSize: fontSize,
+      fontFamily: 'cairo',
       color: color ?? AppColors.black,
       fontWeight: fontWeight,
     );
