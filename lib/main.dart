@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sa7ety/core/services/localstorage/local_storage.dart';
 import 'package:sa7ety/firebase_options.dart';
 
 // import 'firebase_options.dart';
@@ -8,6 +9,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await AppLocalStorage.init();
   runApp(const MainApp());
 }
 
