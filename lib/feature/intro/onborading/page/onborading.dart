@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
+import 'package:sa7ety/feature/intro/onborading/model/onboradingModel.dart';
 
 class Onborading extends StatefulWidget {
   const Onborading({super.key});
@@ -12,6 +13,7 @@ class Onborading extends StatefulWidget {
 }
 
 class _OnboradingState extends State<Onborading> {
+  PageController pageController = new PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +30,17 @@ class _OnboradingState extends State<Onborading> {
                   fontSize: 18,
                 ),
               ),
+            ),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+              controller: pageController,
+              itemCount: Onboradingmodel.onboardingPages.length,
+              itemBuilder: (context, index) {},
             ),
           ),
         ],

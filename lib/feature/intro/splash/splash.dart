@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sa7ety/core/functions/naviagation.dart';
 import 'package:sa7ety/core/services/localstorage/local_storage.dart';
 import 'package:sa7ety/core/utils/app_assets.dart';
-import 'package:sa7ety/feature/intro/onborading/onborading.dart';
+import 'package:sa7ety/feature/intro/onborading/page/onborading.dart';
 import 'package:sa7ety/feature/intro/welcome/welcome.dart';
 
 class SplashScreen extends StatefulWidget {
