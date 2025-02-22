@@ -12,11 +12,11 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_firebase_chat_core: ^1.6.8
-  flutter_localizations: 
+  flutter_localizations:
     sdk: flutter
-  localization: ^2.1.1
-
   flutter_svg: ^2.0.17
+  gap: ^3.0.1
+  localization: ^2.1.1
   lottie: ^3.2.0
   shared_preferences: ^2.5.2
   svg_flutter: ^0.0.1
