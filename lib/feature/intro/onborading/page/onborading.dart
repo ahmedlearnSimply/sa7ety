@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
 import 'package:sa7ety/core/widgets/custom_button.dart';
-import 'package:sa7ety/feature/intro/onborading/model/onboradingModel.dart';
+import 'package:sa7ety/feature/intro/onborading/page/onboradingModel.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onborading extends StatefulWidget {
@@ -24,7 +24,7 @@ class _OnboradingState extends State<Onborading> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          if (pageIndex != Onboradingmodel.onboardingPages.length - 1)
+          if (pageIndex != onboardingPages.length - 1)
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: GestureDetector(
@@ -42,77 +42,77 @@ class _OnboradingState extends State<Onborading> {
             ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: PageView.builder(
-              onPageChanged: (value) {
-                setState(() {
-                  pageIndex = value;
-                });
-              },
-              controller: pageController,
-              itemCount: Onboradingmodel.onboardingPages.length,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Spacer(
-                      flex: 1,
-                    ),
-                    SvgPicture.asset(
-                      Onboradingmodel.onboardingPages[index].image,
-                      height: 300,
-                    ),
-                    Spacer(),
-                    Text(
-                      Onboradingmodel.onboardingPages[index].title,
-                      style: getTitleStyle(),
-                      textAlign: TextAlign.center,
-                    ),
-                    Gap(20),
-                    Text(
-                      Onboradingmodel.onboardingPages[index].description,
-                      style: getBodyStyle(),
-                      textAlign: TextAlign.center,
-                    ),
-                    Spacer(
-                      flex: 4,
-                    ),
-                    SizedBox(
-                      height: 80,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          children: [
-                            SmoothPageIndicator(
-                              controller: pageController,
-                              count: Onboradingmodel.onboardingPages.length,
-                              effect: ExpandingDotsEffect(
-                                dotWidth: 10,
-                                dotHeight: 10,
-                                spacing: 5,
-                                dotColor: Colors.grey,
-                                activeDotColor: AppColors.primary,
-                              ),
-                            ),
-                            Spacer(),
-                            if (pageIndex ==
-                                Onboradingmodel.onboardingPages.length - 1)
-                              CustomButton(
-                                width: 100,
-                                text: "هيا بنا",
-                                onPressed: () {},
-                              )
-                          ],
-                        ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: PageView.builder(
+                onPageChanged: (value) {
+                  setState(() {
+                    pageIndex = value;
+                  });
+                },
+                controller: pageController,
+                itemCount: onboardingPages.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Spacer(
+                        flex: 1,
                       ),
-                    ),
-                  ],
-                );
-              },
+                      SvgPicture.asset(
+                        onboardingPages[index].image,
+                        height: 300,
+                      ),
+                      Spacer(),
+                      Text(
+                        onboardingPages[index].title,
+                        style: getTitleStyle(),
+                        textAlign: TextAlign.center,
+                      ),
+                      Gap(20),
+                      Text(
+                        onboardingPages[index].description,
+                        style: getBodyStyle(),
+                        textAlign: TextAlign.center,
+                      ),
+                      Spacer(
+                        flex: 4,
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 45,
+              child: Row(
+                children: [
+                  SmoothPageIndicator(
+                    controller: pageController,
+                    count: onboardingPages.length,
+                    effect: ExpandingDotsEffect(
+                      dotWidth: 10,
+                      dotHeight: 10,
+                      spacing: 5,
+                      dotColor: Colors.grey,
+                      activeDotColor: AppColors.primary,
+                    ),
+                  ),
+                  Spacer(),
+                  if (pageIndex == onboardingPages.length - 1)
+                    CustomButton(
+                      width: 100,
+                      height: 80,
+                      text: "هيا بنا",
+                      onPressed: () {},
+                    )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
