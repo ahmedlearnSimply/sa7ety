@@ -49,6 +49,13 @@ class Welcome extends StatelessWidget {
               height: 300,
               width: 400,
               decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(.3),
+                    blurRadius: 15,
+                    offset: const Offset(5, 5),
+                  )
+                ],
                 color: AppColors.primary.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(30),
               ),

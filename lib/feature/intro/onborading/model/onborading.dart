@@ -3,10 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:sa7ety/core/functions/naviagation.dart';
+import 'package:sa7ety/core/services/localstorage/local_storage.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
 import 'package:sa7ety/core/widgets/custom_button.dart';
 import 'package:sa7ety/feature/intro/onborading/page/onboradingModel.dart';
+import 'package:sa7ety/feature/intro/welcome/welcome.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onborading extends StatefulWidget {
@@ -30,6 +33,9 @@ class _OnboradingState extends State<Onborading> {
               child: GestureDetector(
                 onTap: () {
                   //*push to welcome page
+                  AppLocalStorage.cacheData(
+                      key: AppLocalStorage.kOnboarding, value: true);
+                  pushReplacement(context, const Welcome());
                 },
                 child: Text(
                   "تخطي",
@@ -106,7 +112,11 @@ class _OnboradingState extends State<Onborading> {
                       width: 100,
                       height: 80,
                       text: "هيا بنا",
-                      onPressed: () {},
+                      onPressed: () {
+                        AppLocalStorage.cacheData(
+                            key: AppLocalStorage.kOnboarding, value: true);
+                        pushReplacement(context, const Welcome());
+                      },
                     )
                 ],
               ),

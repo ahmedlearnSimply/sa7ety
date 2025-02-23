@@ -28,7 +28,7 @@ class AppLocalStorage {
   }
 
   //* getting cached data
-  static dynamic getCachedData({required String key}) async {
+  static dynamic getCachedData({required String key}) {
     return _sharedPreferences.get(key);
   }
 }

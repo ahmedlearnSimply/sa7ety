@@ -1,12 +1,15 @@
 // ignore_for_file: prefer_const_constructors, use_build_context_synchronously, annotate_overrides
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sa7ety/core/functions/naviagation.dart';
-import 'package:sa7ety/core/services/localstorage/local_storage.dart';
 import 'package:sa7ety/core/utils/app_assets.dart';
 import 'package:sa7ety/feature/intro/onborading/model/onborading.dart';
 import 'package:sa7ety/feature/intro/welcome/welcome.dart';
+
+import '../../../core/services/localstorage/local_storage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,17 +21,18 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    super.initState();
+
     Future.delayed(Duration(seconds: 3), () {
-      bool isOnboradingShown =
-          AppLocalStorage.getCachedData(key: AppLocalStorage.kOnboarding) ==
-              true;
-      if (isOnboradingShown) {
+      bool isOnboardingShown =
+          AppLocalStorage.getCachedData(key: AppLocalStorage.kOnboarding);
+
+      if (isOnboardingShown == true) {
         pushReplacement(context, Welcome());
       } else {
         pushReplacement(context, Onborading());
       }
     });
-    super.initState();
   }
 
   Widget build(BuildContext context) {

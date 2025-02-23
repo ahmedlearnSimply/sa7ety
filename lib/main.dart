@@ -31,7 +31,7 @@ class MainApp extends StatelessWidget {
       supportedLocales: [Locale('ar')],
       locale: Locale('ar'),
       home: Scaffold(
-        body: Welcome(),
+        body: SplashScreen(),
       ),
     );
   }
