@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:sa7ety/core/utils/app_assets.dart';
+import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
 
 class Welcome extends StatelessWidget {
@@ -22,21 +24,85 @@ class Welcome extends StatelessWidget {
             ),
           ),
           Positioned(
-              top: 100,
-              right: 25,
+            top: 100,
+            right: 25,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "اهلا بيك",
+                  style: getTitleStyle(fontSize: 60),
+                ),
+                Text(
+                  "سجل واحجز عند دكتورك وانت في بيتك",
+                  style: getBodyStyle(fontSize: 20),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 80,
+            left: 10,
+            right: 10,
+            child: Container(
+              padding: EdgeInsets.all(15),
+              height: 300,
+              width: 400,
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(30),
+              ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "اهلا بيك",
-                    style: getTitleStyle(fontSize: 60),
+                    "سجل دلوقتي كـــ",
+                    style: getBodyStyle(
+                      fontSize: 25,
+                      color: AppColors.black,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  Text(
-                    "سجل واحجز عند دكتورك وانت في بيتك",
-                    style: getBodyStyle(fontSize: 20),
+                  Spacer(),
+                  Container(
+                    height: 75,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white.withOpacity(0.8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "دكتور",
+                        style: getTitleStyle(
+                          fontSize: 25,
+                          color: AppColors.black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  Gap(20),
+                  Container(
+                    height: 75,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white.withOpacity(0.8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "مريض",
+                        style: getTitleStyle(
+                          fontSize: 25,
+                          color: AppColors.black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                 ],
-              ))
+              ),
+            ),
+          ),
         ],
       ),
     );
