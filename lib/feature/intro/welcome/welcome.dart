@@ -12,11 +12,14 @@ class Welcome extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            width: double.infinity,
-            height: double.infinity,
-            fit: BoxFit.cover,
-            AppAssets.welcomePng,
+          Opacity(
+            opacity: 0.6,
+            child: Image.asset(
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.cover,
+              AppAssets.welcomePng,
+            ),
           ),
           Positioned(
               top: 100,
