@@ -65,7 +65,7 @@ class Welcome extends StatelessWidget {
                   Text(
                     "سجل دلوقتي كـــ",
                     style: getBodyStyle(
-                      fontSize: 25,
+                      fontSize: 26,
                       color: AppColors.black,
                     ),
                     textAlign: TextAlign.center,
