@@ -9,9 +9,11 @@ class CustomButton extends StatelessWidget {
       required this.onPressed,
       this.width,
       this.height,
+      this.fontsize,
       this.radius});
   //* variables
   final String text;
+  final double? fontsize;
   final Function() onPressed;
   final double? width;
   final double? radius;
@@ -32,7 +34,8 @@ class CustomButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             text,
-            style: getTitleStyle(color: AppColors.white, fontSize: 16),
+            style:
+                getTitleStyle(color: AppColors.white, fontSize: fontsize ?? 16),
           )),
     );
   }
