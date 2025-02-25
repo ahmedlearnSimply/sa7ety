@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:sa7ety/core/enum/user_type_enum.dart';
 import 'package:sa7ety/core/functions/email_validate.dart';
+import 'package:sa7ety/core/functions/naviagation.dart';
 import 'package:sa7ety/core/utils/app_assets.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
 import 'package:sa7ety/core/widgets/custom_button.dart';
+import 'package:sa7ety/feature/auth/presentation/pages/sign_up.dart';
 
 class LoginView extends StatefulWidget {
   final UserType userType;
@@ -29,6 +31,7 @@ class _LoginViewState extends State<LoginView> {
   TextEditingController passWordController = new TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -164,7 +167,10 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       Gap(8),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          pushReplacement(
+                              context, SignUp(userType: widget.userType));
+                        },
                         child: Text(
                           "سجل الان",
                           style: getBodyStyle(

@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sa7ety/core/enum/user_type_enum.dart';
 import 'package:sa7ety/core/services/localstorage/local_storage.dart';
 import 'package:sa7ety/feature/auth/presentation/pages/login_view.dart';
+import 'package:sa7ety/feature/auth/presentation/pages/sign_up.dart';
 import 'package:sa7ety/feature/intro/splash/splash.dart';
 import 'package:sa7ety/firebase_options.dart';
 
@@ -34,7 +35,7 @@ class MainApp extends StatelessWidget {
       supportedLocales: [Locale('ar')],
       locale: Locale('ar'),
       home: Scaffold(
-        body: LoginView(
+        body: SignUp(
           userType: UserType.doctor,
         ),
       ),
