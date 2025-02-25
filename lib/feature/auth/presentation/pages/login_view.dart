@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:sa7ety/core/enum/user_type_enum.dart';
 import 'package:sa7ety/core/functions/email_validate.dart';
 import 'package:sa7ety/core/utils/app_assets.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
@@ -9,7 +10,8 @@ import 'package:sa7ety/core/utils/textstyle.dart';
 import 'package:sa7ety/core/widgets/custom_button.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+  final UserType userType;
+  LoginView({super.key, required this.userType});
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -17,6 +19,10 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   @override
+  String handleUserType() {
+    return (widget.userType == UserType.doctor) ? 'دكتور' : 'مريض';
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool obscure = true;
   TextEditingController emailController = new TextEditingController();
@@ -37,7 +43,7 @@ class _LoginViewState extends State<LoginView> {
                     AppAssets.logoPng,
                   ),
                   Text(
-                    "سجل الان كــ ",
+                    "سجل الان كــ ${handleUserType()}",
                     style: getTitleStyle(
                       fontSize: 24,
                     ),
