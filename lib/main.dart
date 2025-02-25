@@ -34,11 +34,7 @@ class MainApp extends StatelessWidget {
       ],
       supportedLocales: [Locale('ar')],
       locale: Locale('ar'),
-      home: Scaffold(
-        body: SignUp(
-          userType: UserType.doctor,
-        ),
-      ),
+      home: Scaffold(body: SplashScreen()),
     );
   }
 }

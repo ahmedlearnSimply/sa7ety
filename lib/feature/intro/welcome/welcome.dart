@@ -2,9 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:sa7ety/core/enum/user_type_enum.dart';
+import 'package:sa7ety/core/functions/naviagation.dart';
 import 'package:sa7ety/core/utils/app_assets.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
+import 'package:sa7ety/feature/auth/presentation/pages/login_view.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
@@ -71,38 +74,50 @@ class Welcome extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Spacer(),
-                  Container(
-                    height: 75,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white.withOpacity(0.8),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "دكتور",
-                        style: getTitleStyle(
-                          fontSize: 25,
-                          color: AppColors.black,
+                  GestureDetector(
+                    onTap: () {
+                      pushReplacement(
+                          context, LoginView(userType: UserType.doctor));
+                    },
+                    child: Container(
+                      height: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.8),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "دكتور",
+                          style: getTitleStyle(
+                            fontSize: 25,
+                            color: AppColors.black,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
                   Gap(20),
-                  Container(
-                    height: 75,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white.withOpacity(0.8),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "مريض",
-                        style: getTitleStyle(
-                          fontSize: 25,
-                          color: AppColors.black,
+                  GestureDetector(
+                    onTap: () {
+                      pushReplacement(
+                          context, LoginView(userType: UserType.patient));
+                    },
+                    child: Container(
+                      height: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.8),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "مريض",
+                          style: getTitleStyle(
+                            fontSize: 25,
+                            color: AppColors.black,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
