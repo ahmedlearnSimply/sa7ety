@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sa7ety/core/services/localstorage/local_storage.dart';
+import 'package:sa7ety/feature/auth/presentation/login_view.dart';
 import 'package:sa7ety/feature/intro/splash/splash.dart';
 import 'package:sa7ety/firebase_options.dart';
 
@@ -30,7 +31,7 @@ class MainApp extends StatelessWidget {
       supportedLocales: [Locale('ar')],
       locale: Locale('ar'),
       home: Scaffold(
-        body: SplashScreen(),
+        body: LoginView(),
       ),
     );
   }
