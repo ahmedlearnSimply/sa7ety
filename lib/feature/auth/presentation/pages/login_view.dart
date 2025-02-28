@@ -67,7 +67,7 @@ class _LoginViewState extends State<LoginView> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "من فضلك ادخل الايميل";
-                      } else if (emailValidate(value)) {
+                      } else if (!emailValidate(value)) {
                         return "من فضلك ادخل الايميل صحيحا";
                       } else {
                         return null;
@@ -199,5 +199,12 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passWordController.dispose();
+    super.dispose();
   }
 }
