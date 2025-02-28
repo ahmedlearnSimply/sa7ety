@@ -33,6 +33,17 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passWordController = new TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+          ),
+        ),
+      ),
       backgroundColor: AppColors.white,
       body: Center(
         child: SingleChildScrollView(
@@ -223,7 +234,8 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  Gap(30),
                 ],
               ),
             ),

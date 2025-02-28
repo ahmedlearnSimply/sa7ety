@@ -76,8 +76,7 @@ class Welcome extends StatelessWidget {
                   Spacer(),
                   GestureDetector(
                     onTap: () {
-                      pushReplacement(
-                          context, LoginView(userType: UserType.doctor));
+                      push(context, LoginView(userType: UserType.doctor));
                     },
                     child: Container(
                       height: 75,
@@ -100,8 +99,7 @@ class Welcome extends StatelessWidget {
                   Gap(20),
                   GestureDetector(
                     onTap: () {
-                      pushReplacement(
-                          context, LoginView(userType: UserType.patient));
+                      push(context, LoginView(userType: UserType.patient));
                     },
                     child: Container(
                       height: 75,

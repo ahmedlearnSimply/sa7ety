@@ -31,6 +31,17 @@ class _LoginViewState extends State<LoginView> {
   TextEditingController passWordController = new TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+          ),
+        ),
+      ),
       backgroundColor: AppColors.white,
       body: Center(
         child: SingleChildScrollView(
