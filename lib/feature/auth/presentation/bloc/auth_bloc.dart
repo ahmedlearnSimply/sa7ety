@@ -6,4 +6,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthState()) {
     on<AuthEvent>((event, emit) {});
   }
+
+  //* register Method
+  register(RegisterEvent event, Emitter<AuthState> emit) {
+    emit(RegisterLoadingState());
+  }
 }
