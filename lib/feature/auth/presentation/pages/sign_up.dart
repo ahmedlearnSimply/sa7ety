@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -12,6 +14,7 @@ import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
 import 'package:sa7ety/core/widgets/custom_button.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_bloc.dart';
+import 'package:sa7ety/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_state.dart';
 import 'package:sa7ety/feature/auth/presentation/pages/login_view.dart';
 
@@ -24,7 +27,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  @override
   String handleUserType() {
     return (widget.userType == UserType.doctor) ? 'دكتور' : 'مريض';
   }
@@ -35,6 +37,7 @@ class _SignUpState extends State<SignUp> {
 
   TextEditingController emailController = new TextEditingController();
   TextEditingController passWordController = new TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -51,17 +54,22 @@ class _SignUpState extends State<SignUp> {
       backgroundColor: AppColors.white,
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state is RegisterSuccessState) {
-          } else if (state is RegisterLoadingState) {
+          if (state is RegisterLoadingState) {
             showLoadingDialog(context);
-          } else if (state is AuthError) {}
+          } else if (state is RegisterSuccessState) {
+            Navigator.pop(context);
+            log("Success");
+          } else if (state is AuthError) {
+            Navigator.pop(context);
+            showErrorDialog(context, state.message);
+          }
         },
         child: Center(
           child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                key: _formKey,
+            child: Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -109,7 +117,7 @@ class _SignUpState extends State<SignUp> {
                         prefixIcon: Padding(
                           padding: const EdgeInsets.only(right: 16.0, left: 10),
                           child: Icon(
-                            Icons.email,
+                            Icons.person,
                             color: AppColors.primary,
                             size: 30,
                           ),
@@ -117,23 +125,22 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     Gap(20),
+                    // Email field (LTR input)
                     TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "من فضلك ادخل الايميل";
-                        } else if (emailValidate(value)) {
+                        } else if (!emailValidate(value)) {
                           return "من فضلك ادخل الايميل صحيحا";
-                        } else {
-                          return null;
                         }
+                        return null;
                       },
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      textAlign: TextAlign.start,
+                      textAlign: TextAlign.start, // Align to the left for LTR
                       textDirection:
-                          TextDirection.ltr, // Force left-to-right text input
-
+                          TextDirection.ltr, // Ensures left-to-right input flow
                       decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -144,7 +151,6 @@ class _SignUpState extends State<SignUp> {
                           borderSide: BorderSide.none,
                         ),
                         hintText: "Ahmed@example.com",
-                        hintTextDirection: TextDirection.ltr,
                         hintStyle: getSmallStyle(
                           color: Colors.grey,
                           fontSize: 20,
@@ -159,6 +165,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
+
                     Gap(20),
                     //* password
                     TextFormField(
@@ -217,7 +224,18 @@ class _SignUpState extends State<SignUp> {
                       fontsize: 21,
                       radius: 30,
                       height: 60,
-                      onPressed: () {},
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          context.read<AuthBloc>().add(
+                                RegisterEvent(
+                                  name: nameController.text,
+                                  email: emailController.text,
+                                  password: passWordController.text,
+                                  userType: widget.userType,
+                                ),
+                              );
+                        }
+                      },
                     ),
                     Gap(30),
                     Row(

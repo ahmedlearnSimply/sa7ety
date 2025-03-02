@@ -20,7 +20,7 @@ showLoadingDialog(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset(
-                'assets/loading.json',
+                'assets/images/loading.json',
                 width: 200,
                 height: 200,
               ),

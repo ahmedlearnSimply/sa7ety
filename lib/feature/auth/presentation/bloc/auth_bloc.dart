@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_event.dart';
@@ -5,13 +7,13 @@ import 'package:sa7ety/feature/auth/presentation/bloc/auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthState()) {
-    on<AuthEvent>((event, emit) {});
     on<RegisterEvent>(register);
   }
 
   //* register Method
   Future<void> register(RegisterEvent event, Emitter<AuthState> emit) async {
     emit(RegisterLoadingState());
+    log("message1");
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -19,8 +21,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: event.password,
       );
       User? user = credential.user;
-      user!.updateDisplayName(event.name);
+      user?.updateDisplayName(event.name);
       emit(RegisterSuccessState());
+      log("message2");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         AuthError(message: "الرقم السري ضعيف");
