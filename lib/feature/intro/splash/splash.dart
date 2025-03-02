@@ -25,9 +25,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Future.delayed(Duration(seconds: 3), () {
       bool isOnboardingShown =
-          AppLocalStorage.getCachedData(key: AppLocalStorage.kOnboarding);
+          AppLocalStorage.getCachedData(key: AppLocalStorage.kOnboarding) ??
+              false; // ✅ Default to false if null
 
-      if (isOnboardingShown == true) {
+      if (isOnboardingShown) {
         pushReplacement(context, Welcome());
       } else {
         pushReplacement(context, Onborading());

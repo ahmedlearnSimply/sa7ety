@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "151662591333",
+    "project_id": "newsa7ety",
+    "storage_bucket": "newsa7ety.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151662591333:android:b4cad0798f3a2187b2758c",
+        "android_client_info": {
+          "package_name": "com.example.sa7ety"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj1OjmX4hWSooY9Q1ECc-ySQyPZeTDWD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
