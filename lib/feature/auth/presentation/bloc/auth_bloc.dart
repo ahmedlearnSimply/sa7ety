@@ -25,24 +25,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       log("message3 - User created successfully");
 
       User? user = credential.user;
-      await user?.updateDisplayName(
-          event.name); // Ensure updateDisplayName is awaited
+      await user?.updateDisplayName(event.name);
 
       emit(RegisterSuccessState());
       log("message4 - Registration successful");
     } on FirebaseAuthException catch (e) {
-      log("FirebaseAuthException: ${e.code} - ${e.message}"); // Log the error code
+      log("FirebaseAuthException: ${e.code} - ${e.message}"); // Log detailed error
 
       if (e.code == 'weak-password') {
         emit(AuthError(message: "الرقم السري ضعيف"));
       } else if (e.code == 'email-already-in-use') {
         emit(AuthError(message: "الايميل مستخدم من قبل"));
+      } else if (e.code == 'invalid-email') {
+        emit(AuthError(message: "صيغة البريد الإلكتروني غير صحيحة"));
+      } else if (e.code == 'network-request-failed') {
+        emit(AuthError(message: "خطأ في الشبكة، تحقق من اتصالك بالإنترنت"));
       } else {
         emit(AuthError(message: "حدث خطأ ما، يرجى المحاولة لاحقًا"));
       }
     } catch (e) {
       log("Unexpected error: $e");
-      emit(AuthError(message: "حدث خطأ ما، يرجى المحاولة لاحقًا"));
+      emit(AuthError(message: "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا"));
     }
   }
 }

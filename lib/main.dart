@@ -15,8 +15,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await AppLocalStorage.init();
 
+  FirebaseAuth.instance.setSettings(
+      appVerificationDisabledForTesting:
+          true); // Disable reCAPTCHA for debugging
+
+  await AppLocalStorage.init();
   runApp(MainApp());
 }
 
