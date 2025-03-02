@@ -19,11 +19,11 @@ showLoadingDialog(BuildContext context) {
       builder: (context) => Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Lottie.asset(
-              //     // 'assets/loading.json',
-              //     // width: 200,
-              //     // height: 200,
-              //     ),
+              Lottie.asset(
+                'assets/loading.json',
+                width: 200,
+                height: 200,
+              ),
             ],
           ));
 }

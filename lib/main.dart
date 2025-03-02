@@ -2,9 +2,11 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sa7ety/core/enum/user_type_enum.dart';
 import 'package:sa7ety/core/services/localstorage/local_storage.dart';
+import 'package:sa7ety/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:sa7ety/feature/auth/presentation/pages/login_view.dart';
 import 'package:sa7ety/feature/auth/presentation/pages/sign_up.dart';
 import 'package:sa7ety/feature/intro/splash/splash.dart';
@@ -25,16 +27,19 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: [Locale('ar')],
-      locale: Locale('ar'),
-      home: Scaffold(body: SplashScreen()),
+    return BlocProvider(
+      create: (context) => AuthBloc(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [Locale('ar')],
+        locale: Locale('ar'),
+        home: Scaffold(body: SplashScreen()),
+      ),
     );
   }
 }
