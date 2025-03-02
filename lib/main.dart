@@ -8,17 +8,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sa7ety/core/services/localstorage/local_storage.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:sa7ety/feature/intro/splash/splash.dart';
-import 'package:sa7ety/firebase_options.dart';
 
-// import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await AppLocalStorage.init();
 
-  runApp(const MainApp());
+  await AppLocalStorage.init();
+  FirebaseAuth.instance.setSettings(appVerificationDisabledForTesting: true);
+
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
