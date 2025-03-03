@@ -6,6 +6,10 @@ class RegisterLoadingState extends AuthState {}
 
 class RegisterSuccessState extends AuthState {}
 
+class LoginLoadingState extends AuthState {}
+
+class LoginSuccessState extends AuthState {}
+
 class AuthError extends AuthState {
   final String message;
   AuthError({required this.message});
