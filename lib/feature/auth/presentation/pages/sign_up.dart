@@ -97,8 +97,8 @@ class _SignUpState extends State<SignUp> {
                       textInputAction: TextInputAction.next,
                       textAlign: TextAlign.start,
                       textDirection:
-                          TextDirection.ltr, // Force left-to-right text input
-
+                          TextDirection.rtl, // Force left-to-right text input
+                      style: getBodyStyle(fontSize: 18),
                       decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -127,6 +127,7 @@ class _SignUpState extends State<SignUp> {
                     Gap(20),
                     // Email field (LTR input)
                     TextFormField(
+                      style: getBodyStyle(fontSize: 18),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "من فضلك ادخل الايميل";
@@ -138,9 +139,8 @@ class _SignUpState extends State<SignUp> {
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      textAlign: TextAlign.start, // Align to the left for LTR
-                      textDirection:
-                          TextDirection.ltr, // Ensures left-to-right input flow
+                      textAlign: TextAlign.start,
+                      textDirection: TextDirection.ltr,
                       decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -151,6 +151,7 @@ class _SignUpState extends State<SignUp> {
                           borderSide: BorderSide.none,
                         ),
                         hintText: "Ahmed@example.com",
+                        hintTextDirection: TextDirection.ltr,
                         hintStyle: getSmallStyle(
                           color: Colors.grey,
                           fontSize: 20,
@@ -169,6 +170,8 @@ class _SignUpState extends State<SignUp> {
                     Gap(20),
                     //* password
                     TextFormField(
+                      style: getBodyStyle(fontSize: 18),
+
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'من فضلك ادخل الرقم السري';

@@ -5,10 +5,18 @@ import 'package:lottie/lottie.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
 import 'dart:ui';
 
+import 'package:sa7ety/core/utils/textstyle.dart';
+
 showErrorDialog(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     backgroundColor: AppColors.redColor,
-    content: Text(text),
+    content: Text(
+      text,
+      style: getSmallStyle(
+        color: Colors.white,
+      ),
+      textAlign: TextAlign.center,
+    ),
   ));
 }
 

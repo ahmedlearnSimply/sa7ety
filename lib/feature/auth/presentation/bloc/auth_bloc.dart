@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sa7ety/core/enum/user_type_enum.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_state.dart';
 
@@ -26,6 +28,35 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       User? user = credential.user;
       await user?.updateDisplayName(event.name);
+
+      //* store in firestore
+      if (event.userType == UserType.doctor) {
+        FirebaseFirestore.instance.collection('doctors').doc(user?.uid).set({
+          'name': event.name,
+          'image': '',
+          'specialization': '',
+          'rating': 3,
+          'email': event.email,
+          'phone1': '',
+          'phone2': '',
+          'bio': '',
+          'openHour': '',
+          'closeHour': '',
+          'address': '',
+          'uid': user?.uid,
+        });
+      } else {
+        FirebaseFirestore.instance.collection('patients').doc(user?.uid).set({
+          'name': event.name,
+          'image': '',
+          'age': '',
+          'email': event.email,
+          'phone': '',
+          'bio': '',
+          'city': '',
+          'uid': user?.uid,
+        });
+      }
 
       emit(RegisterSuccessState());
       log("message4 - Registration successful");
