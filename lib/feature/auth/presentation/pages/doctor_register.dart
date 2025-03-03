@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
+import 'package:sa7ety/core/constants/specialization.dart';
 import 'package:sa7ety/core/utils/app_assets.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
@@ -15,6 +16,8 @@ class DoctorRegister extends StatefulWidget {
 }
 
 class _DoctorRegisterState extends State<DoctorRegister> {
+  String _specialization = specialization[0];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,19 +76,40 @@ class _DoctorRegisterState extends State<DoctorRegister> {
               padding: const EdgeInsets.all(20.0),
               child: Row(
                 children: [
-                  Column(
-                    children: [
-                      Text(
-                        "التخصص",
-                        style: getBodyStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                        ),
-                      ),
-                      Gap(20),
-                    ],
+                  Text(
+                    "التخصص",
+                    style: getBodyStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),
                   ),
                 ],
+              ),
+            ),
+
+            Gap(20),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.accentColor,
+                ),
+                child: DropdownButton(
+                    value: _specialization,
+                    onChanged: (String? newValue) {
+                      setState(
+                        () {
+                          _specialization = newValue ?? specialization[0];
+                        },
+                      );
+                    },
+                    items: specialization.map((element) {
+                      return DropdownMenuItem(
+                        value: element,
+                        child: Text(element),
+                      );
+                    }).toList()),
               ),
             )
           ],
