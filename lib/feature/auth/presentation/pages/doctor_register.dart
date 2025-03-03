@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
+import 'package:sa7ety/core/utils/app_assets.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
 
@@ -28,8 +30,21 @@ class _DoctorRegisterState extends State<DoctorRegister> {
           ),
         ),
       ),
-      body: Column(
-        children: [],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Gap(20),
+              CircleAvatar(
+                radius: 60,
+                child: Image.asset(
+                  AppAssets.docPng,
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
