@@ -3,6 +3,7 @@ class AppAssets {
   static String doctorCardSvg = "assets/images/doctor-card.svg";
   static String logoPng = "assets/images/logo.png";
   static String logSvg = "assets/images/welSvg.svg";
+  static String ahmed = "assets/images/Ahmed.jpeg";
 
   static String noScheduleSvg = "assets/images/no_scheduled.svg";
   static String noSearch = "assets/images/no-search.svg";

@@ -36,12 +36,39 @@ class _DoctorRegisterState extends State<DoctorRegister> {
           child: Column(
             children: [
               Gap(20),
-              CircleAvatar(
-                radius: 60,
-                child: Image.asset(
-                  AppAssets.docPng,
-                ),
-              )
+              Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundImage: AssetImage(
+                      AppAssets.ahmed,
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 10,
+                              color: Colors.black26,
+                            ),
+                          ]),
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Color.fromARGB(255, 0, 130, 236),
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ),
