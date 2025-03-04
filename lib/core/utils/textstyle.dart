@@ -17,7 +17,7 @@ TextStyle getTitleStyle(
 //* get body style
 TextStyle getBodyStyle(
         {Color? color,
-        double? fontSize = 14,
+        double? fontSize = 18,
         FontWeight? fontWeight = FontWeight.w400}) =>
     TextStyle(
       fontSize: fontSize,

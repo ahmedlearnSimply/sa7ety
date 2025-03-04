@@ -81,7 +81,7 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                       Text(
                         "التخصص",
                         style: getBodyStyle(
-                          color: Colors.black,
+                          color: AppColors.black,
                           fontSize: 18,
                         ),
                       ),
@@ -136,7 +136,7 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                       Text(
                         "نبذة تعريفية",
                         style: getBodyStyle(
-                          color: Colors.black,
+                          color: AppColors.black,
                           fontSize: 18,
                         ),
                       ),
@@ -159,6 +159,21 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                       return null;
                     }
                   },
+                ),
+                Gap(10),
+                Divider(thickness: 1, color: AppColors.greyColor),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'عنوان العيادة',
+                        style: getBodyStyle(
+                          color: AppColors.black,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
