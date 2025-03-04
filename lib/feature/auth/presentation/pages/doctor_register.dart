@@ -96,32 +96,36 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                     color: AppColors.accentColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: DropdownButton(
-                      isExpanded: true,
-                      iconEnabledColor: AppColors.primary,
-                      icon: Icon(
-                        Icons.expand_circle_down_outlined,
-                      ),
-                      value: _specialization,
-                      onChanged: (String? newValue) {
-                        setState(
-                          () {
-                            _specialization = newValue ?? specialization[0];
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                        isExpanded: true,
+                        iconEnabledColor: AppColors.primary,
+                        icon: Icon(
+                          Icons.expand_circle_down_outlined,
+                        ),
+                        value: _specialization,
+                        onChanged: (String? newValue) {
+                          setState(
+                            () {
+                              _specialization = newValue ?? specialization[0];
+                            },
+                          );
+                        },
+                        items: specialization.map(
+                          (element) {
+                            return DropdownMenuItem(
+                              value: element,
+                              child: Text(
+                                element,
+                                style: getBodyStyle(
+                                  fontSize: 24,
+                                ),
+                              ),
+                            );
                           },
-                        );
-                      },
-                      items: specialization.map((element) {
-                        return DropdownMenuItem(
-                          value: element,
-                          child: Text(
-                            element,
-                            style: getBodyStyle(
-                              fontSize: 24,
-                            ),
-                          ),
-                        );
-                      }).toList()),
-                )
+                        ).toList()),
+                  ),
+                ),
               ],
             ),
           ),
