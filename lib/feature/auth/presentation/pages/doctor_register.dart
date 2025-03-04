@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:sa7ety/core/constants/specialization.dart';
 import 'package:sa7ety/core/utils/app_assets.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
@@ -17,6 +18,45 @@ class DoctorRegister extends StatefulWidget {
 
 class _DoctorRegisterState extends State<DoctorRegister> {
   String _specialization = specialization[0];
+  late String _startTime =
+      DateFormat('hh:mm a').format(DateTime(2025, 9, 7, 10, 00));
+  late String _endTime =
+      DateFormat('hh:mm a').format(DateTime(2025, 9, 7, 22, 00));
+
+  showStartTimePicker() async {
+    final startTimePicked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (startTimePicked != null) {
+      setState(() {
+        _startTime = _formatTime(startTimePicked);
+      });
+    }
+  }
+
+  showEndTimePicker() async {
+    final endTimePicked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(
+          DateTime.now().add(const Duration(minutes: 15))),
+    );
+
+    if (endTimePicked != null) {
+      setState(() {
+        _endTime = _formatTime(endTimePicked);
+      });
+    }
+  }
+
+  String _formatTime(TimeOfDay time) {
+    final now = DateTime.now();
+    final formattedTime = DateFormat('hh:mm a').format(
+      DateTime(now.year, now.month, now.day, time.hour, time.minute),
+    );
+    return formattedTime;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -222,32 +262,44 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                     Row(
                       children: [
                         Expanded(
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                                suffixIcon: IconButton(
-                              icon: Icon(
-                                Icons.watch_later_outlined,
-                                color: AppColors.primary,
-                              ),
-                              onPressed: () {},
-                              color: Colors.black,
-                            )),
-                            readOnly: true,
+                          child: GestureDetector(
+                            onTap: showStartTimePicker,
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  hintText: _startTime,
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      Icons.watch_later_outlined,
+                                      color: AppColors.primary,
+                                    ),
+                                    onPressed: () {
+                                      showStartTimePicker();
+                                    },
+                                    color: Colors.black,
+                                  )),
+                              readOnly: true,
+                            ),
                           ),
                         ),
                         Gap(10),
                         Expanded(
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                                suffixIcon: IconButton(
-                              icon: Icon(
-                                Icons.watch_later_outlined,
-                                color: AppColors.primary,
-                              ),
-                              onPressed: () {},
-                              color: Colors.black,
-                            )),
-                            readOnly: true,
+                          child: GestureDetector(
+                            onTap: showEndTimePicker,
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  hintText: _endTime,
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      Icons.watch_later_outlined,
+                                      color: AppColors.primary,
+                                    ),
+                                    onPressed: () {
+                                      showEndTimePicker();
+                                    },
+                                    color: Colors.black,
+                                  )),
+                              readOnly: true,
+                            ),
                           ),
                         ),
                       ],
