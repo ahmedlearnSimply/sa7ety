@@ -162,6 +162,9 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                 ),
                 Gap(10),
                 Divider(thickness: 1, color: AppColors.greyColor),
+
+                //*  'عنوان العيادة',
+
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -171,10 +174,47 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                         style: getBodyStyle(
                           color: AppColors.black,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
+
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  style: TextStyle(color: Colors.black),
+                  decoration:
+                      InputDecoration(hintText: 'مدينه الشروق - عماره ١١٤'),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'من فضلك ادخل النبذة التعريفية';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                //*  'ساعات العمل ',
+                Gap(8),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'ساعات العمل من ',
+                          style: getSmallStyle(
+                              color: AppColors.black, fontSize: 16),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          'الي',
+                          style: getSmallStyle(
+                              color: AppColors.black, fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
