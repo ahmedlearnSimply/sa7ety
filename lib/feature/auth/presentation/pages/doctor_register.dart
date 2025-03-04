@@ -304,6 +304,66 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                         ),
                       ],
                     ),
+                    //* phone number 1
+                    Gap(20),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            'رقم الهاتف ١',
+                            style: getBodyStyle(
+                              color: AppColors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              hintText: '20xxxxxxxxx+',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Gap(20),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            'رقم الهاتف ٢ (اختياري)',
+                            style: getBodyStyle(
+                              color: AppColors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'من فضلك ادخل رقم الهاتف';
+                              } else if (value!.length != 10) {
+                                return 'رقم الهاتف يجب أن يكون 10 رقما';
+                              } else {
+                                return null;
+                              }
+                            },
+                            decoration: InputDecoration(
+                              hintText: '20xxxxxxxxx+',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 )
               ],
