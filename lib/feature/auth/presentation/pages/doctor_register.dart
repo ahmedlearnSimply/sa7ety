@@ -323,6 +323,16 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                       children: [
                         Expanded(
                           child: TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'من فضلك ادخل رقم الهاتف';
+                              } else if (value!.length != 10) {
+                                return 'رقم الهاتف يجب أن يكون 10 رقما';
+                              } else {
+                                return null;
+                              }
+                            },
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               hintText: '20xxxxxxxxx+',
                             ),
@@ -348,15 +358,7 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                       children: [
                         Expanded(
                           child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'من فضلك ادخل رقم الهاتف';
-                              } else if (value!.length != 10) {
-                                return 'رقم الهاتف يجب أن يكون 10 رقما';
-                              } else {
-                                return null;
-                              }
-                            },
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               hintText: '20xxxxxxxxx+',
                             ),
@@ -365,8 +367,33 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                       ],
                     ),
                   ],
-                )
+                ),
               ],
+            ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.only(top: 25),
+        child: SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              foregroundColor: AppColors.primary,
+              backgroundColor: AppColors.primary,
+            ),
+            onPressed: () {},
+            child: Text(
+              style: getTitleStyle(
+                color: Colors.white,
+              ),
+              "التسجيل",
             ),
           ),
         ),
