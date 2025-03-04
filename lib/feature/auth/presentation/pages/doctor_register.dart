@@ -205,6 +205,7 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                               color: AppColors.black, fontSize: 16),
                         ),
                       ),
+                      Gap(17),
                       Expanded(
                         child: Text(
                           'الي',
@@ -214,6 +215,44 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                       ),
                     ],
                   ),
+                ),
+                Gap(5),
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                              icon: Icon(
+                                Icons.watch_later_outlined,
+                                color: AppColors.primary,
+                              ),
+                              onPressed: () {},
+                              color: Colors.black,
+                            )),
+                            readOnly: true,
+                          ),
+                        ),
+                        Gap(10),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                              icon: Icon(
+                                Icons.watch_later_outlined,
+                                color: AppColors.primary,
+                              ),
+                              onPressed: () {},
+                              color: Colors.black,
+                            )),
+                            readOnly: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 )
               ],
             ),
