@@ -126,6 +126,40 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                         ).toList()),
                   ),
                 ),
+                Gap(15),
+
+                //*  "نبذة تعريفية",
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "نبذة تعريفية",
+                        style: getBodyStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Gap(10),
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  maxLines: 5,
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    hintText:
+                        'سجل المعلومات الطبية العامة مثل تعليمك الأكاديمي وخبراتك السابقة...',
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'من فضلك ادخل النبذة التعريفية';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
               ],
             ),
           ),

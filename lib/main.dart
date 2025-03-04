@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sa7ety/core/services/localstorage/local_storage.dart';
+import 'package:sa7ety/core/utils/app_theme.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:sa7ety/feature/auth/presentation/pages/doctor_register.dart';
 import 'package:sa7ety/feature/intro/splash/splash.dart';
@@ -31,6 +32,7 @@ class MainApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthBloc(),
       child: MaterialApp(
+        theme: AppThemes.lightTheme,
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
