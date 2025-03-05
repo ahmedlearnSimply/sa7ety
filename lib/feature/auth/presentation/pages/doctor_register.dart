@@ -154,11 +154,12 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                   Stack(
                     children: [
                       CircleAvatar(
+                        backgroundColor: Colors.white,
                         radius: 60,
                         backgroundImage: (_image != null)
                             ? FileImage(_image!)
                             : AssetImage(
-                                AppAssets.ahmed,
+                                AppAssets.docPng,
                               ) as ImageProvider,
                       ),
                       Positioned(
