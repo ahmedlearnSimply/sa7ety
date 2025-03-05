@@ -109,10 +109,15 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                               ]),
                           child: Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.camera_alt,
-                              color: Color.fromARGB(255, 0, 130, 236),
-                              size: 20,
+                            child: GestureDetector(
+                              onTap: () {
+                                //* image picker
+                              },
+                              child: Icon(
+                                Icons.camera_alt,
+                                color: Color.fromARGB(255, 0, 130, 236),
+                                size: 20,
+                              ),
                             ),
                           ),
                         ),
