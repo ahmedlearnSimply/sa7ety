@@ -25,3 +25,5 @@ class LoginEvent extends AuthEvent {
     required this.userType,
   });
 }
+
+class UpdateDoctorDataEvent extends AuthEvent {}
