@@ -16,6 +16,11 @@ class DoctorRegister extends StatefulWidget {
 }
 
 class _DoctorRegisterState extends State<DoctorRegister> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _bio = TextEditingController();
+  final TextEditingController _address = TextEditingController();
+  final TextEditingController _phone1 = TextEditingController();
+  final TextEditingController _phone2 = TextEditingController();
   String _specialization = specialization[0];
   late String _startTime =
       DateFormat('hh:mm a').format(DateTime(2025, 9, 7, 10, 00));
