@@ -190,7 +190,9 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                     ),
                   ),
                   Gap(10),
+                  //* bio
                   TextFormField(
+                    controller: _bio,
                     keyboardType: TextInputType.text,
                     maxLines: 5,
                     style: TextStyle(color: Colors.black),
@@ -224,8 +226,9 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                       ],
                     ),
                   ),
-
+                  //* address
                   TextFormField(
+                    controller: _address,
                     keyboardType: TextInputType.text,
                     style: TextStyle(color: Colors.black),
                     decoration:
@@ -329,6 +332,7 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                         children: [
                           Expanded(
                             child: TextFormField(
+                              controller: _phone1,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'من فضلك ادخل رقم الهاتف';
@@ -364,6 +368,7 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                         children: [
                           Expanded(
                             child: TextFormField(
+                              controller: _phone2,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 hintText: '20xxxxxxxxx+',
