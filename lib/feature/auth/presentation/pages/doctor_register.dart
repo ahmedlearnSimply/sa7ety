@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields
-
+import 'dart:io'; // Required to use File
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
@@ -16,11 +17,75 @@ class DoctorRegister extends StatefulWidget {
 }
 
 class _DoctorRegisterState extends State<DoctorRegister> {
+  //! for image picker
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
+
+  // * Function to Pick Image from Gallery
+  // 📸 Function to Pick Image from Camera or Gallery
+  Future<void> _pickImage(ImageSource source) async {
+    final XFile? pickedFile = await _picker.pickImage(source: source);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
+  // 📌 Show Dialog to Choose Camera or Gallery
+  void _showImageSourceDialog() {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+      ),
+      builder: (context) => Container(
+        padding: EdgeInsets.all(16),
+        height: 200,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "اختار",
+              style: getTitleStyle(),
+            ),
+            SizedBox(height: 10),
+            ListTile(
+              leading: Icon(Icons.camera_alt, color: Colors.blue),
+              title: Text(
+                "الكاميرا",
+                style: getBodyStyle(),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                _pickImage(ImageSource.camera);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.image, color: Colors.green),
+              title: Text(
+                "معرض الصور",
+                style: getBodyStyle(),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                _pickImage(ImageSource.gallery);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  //! controller
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _bio = TextEditingController();
   final TextEditingController _address = TextEditingController();
   final TextEditingController _phone1 = TextEditingController();
   final TextEditingController _phone2 = TextEditingController();
+
+  //! formating date
   String _specialization = specialization[0];
   late String _startTime =
       DateFormat('hh:mm a').format(DateTime(2025, 9, 7, 10, 00));
@@ -90,9 +155,11 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                     children: [
                       CircleAvatar(
                         radius: 60,
-                        backgroundImage: AssetImage(
-                          AppAssets.ahmed,
-                        ),
+                        backgroundImage: (_image != null)
+                            ? FileImage(_image!)
+                            : AssetImage(
+                                AppAssets.ahmed,
+                              ) as ImageProvider,
                       ),
                       Positioned(
                         bottom: 0,
@@ -110,9 +177,7 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                           child: Padding(
                             padding: EdgeInsets.all(8.0),
                             child: GestureDetector(
-                              onTap: () {
-                                //* image picker
-                              },
+                              onTap: _showImageSourceDialog,
                               child: Icon(
                                 Icons.camera_alt,
                                 color: Color.fromARGB(255, 0, 130, 236),
