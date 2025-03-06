@@ -41,7 +41,7 @@ class MainApp extends StatelessWidget {
         ],
         supportedLocales: [Locale('ar')],
         locale: Locale('ar'),
-        home: Scaffold(body: DoctorRegister()),
+        home: Scaffold(body: SplashScreen()),
       ),
     );
   }

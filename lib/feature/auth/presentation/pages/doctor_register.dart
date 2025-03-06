@@ -517,8 +517,10 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                       );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('من فضلك قم بتحميل صورتك الشخصية'),
+                    SnackBar(
+                      content: (_image == null)
+                          ? Text('من فضلك قم بتحميل صورتك الشخصية')
+                          : Text(" من فضلك قم بكتابه معلوماتك"),
                     ),
                   );
                 }

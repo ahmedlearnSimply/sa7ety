@@ -63,7 +63,6 @@ class _SignUpState extends State<SignUp> {
             } else {
               //* home page for patient
             }
-            Navigator.pop(context);
             log("Success");
           } else if (state is AuthError) {
             Navigator.pop(context);
