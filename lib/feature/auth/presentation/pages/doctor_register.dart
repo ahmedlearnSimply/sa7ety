@@ -5,12 +5,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:sa7ety/core/constants/specialization.dart';
 import 'package:sa7ety/core/functions/dialog.dart';
 import 'package:sa7ety/core/utils/app_assets.dart';
 import 'package:sa7ety/core/utils/appcolors.dart';
 import 'package:sa7ety/core/utils/textstyle.dart';
+import 'package:sa7ety/feature/auth/data/doctor_model.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_bloc.dart';
+import 'package:sa7ety/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_state.dart';
 
 class DoctorRegister extends StatefulWidget {
@@ -21,6 +25,12 @@ class DoctorRegister extends StatefulWidget {
 }
 
 class _DoctorRegisterState extends State<DoctorRegister> {
+  String? userID;
+
+  Future<void> _getUser() async {
+    userID = FirebaseAuth.instance.currentUser!.uid;
+  }
+
   //! for image picker
   File? _image;
   final ImagePicker _picker = ImagePicker();
@@ -488,7 +498,31 @@ class _DoctorRegisterState extends State<DoctorRegister> {
                 foregroundColor: AppColors.primary,
                 backgroundColor: AppColors.primary,
               ),
-              onPressed: () {},
+              onPressed: () async {
+                if (_formKey.currentState!.validate() && _image != null) {
+                  context.read<AuthBloc>().add(
+                        UpdateDoctorDataEvent(
+                          doctorModel: DoctorModel(
+                            uid: userID,
+                            // image: profileUrl,
+                            phone1: _phone1.text,
+                            phone2: _phone2.text,
+                            address: _address.text,
+                            specialization: _specialization,
+                            openHour: _startTime,
+                            closeHour: _endTime,
+                            bio: _bio.text,
+                          ),
+                        ),
+                      );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('من فضلك قم بتحميل صورتك الشخصية'),
+                    ),
+                  );
+                }
+              },
               child: Text(
                 style: getTitleStyle(
                   color: Colors.white,

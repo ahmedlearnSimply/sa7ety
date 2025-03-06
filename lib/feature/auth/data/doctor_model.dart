@@ -57,18 +57,18 @@ class DoctorModel {
   //* to json
   Map<String, dynamic> toJson() {
     return {
-      'name': name,
-      'image': image,
-      'specialization': specialization,
-      'rating': rating,
-      'email': email,
-      'phone1': phone1,
-      'phone2': phone2,
-      'bio': bio,
-      'openHour': openHour,
-      'closeHour': closeHour,
-      'address': address,
-      'uid': uid,
+      if (name != null) 'name': name,
+      if (image != null) 'image': image,
+      if (specialization != null) 'specialization': specialization,
+      if (rating != null) 'rating': rating,
+      if (email != null) 'email': email,
+      if (phone1 != null) 'phone1': phone1,
+      if (phone2 != null) 'phone2': phone2,
+      if (bio != null) 'bio': bio,
+      if (openHour != null) 'openHour': openHour,
+      if (closeHour != null) 'closeHour': closeHour,
+      if (address != null) 'address': address,
+      if (uid != null) 'uid': uid,
     };
   }
 }
