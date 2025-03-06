@@ -11,6 +11,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInital()) {
     on<RegisterEvent>(register);
     on<LoginEvent>(login);
+    on<UpdateDoctorDataEvent>(updateDoctorData);
   }
 
   Future<void> login(LoginEvent event, Emitter<AuthState> emit) async {
@@ -108,7 +109,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       UpdateDoctorDataEvent event, Emitter<AuthState> emit) async {
     emit(DoctorRegisterLoadingState());
     try {
-      FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection('doctors')
           .doc(event.doctorModel.uid)
           .update(event.doctorModel.toJson());
