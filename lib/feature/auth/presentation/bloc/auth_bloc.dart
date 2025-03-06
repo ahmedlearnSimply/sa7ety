@@ -101,4 +101,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthError(message: "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا"));
     }
   }
+
+  //* update Doctor data
+
+  Future<void> updateDoctorData(
+      UpdateDoctorDataEvent event, Emitter<AuthState> emit) async {
+    emit(DoctorRegisterLoadingState());
+    try {
+      FirebaseFirestore.instance
+          .collection('doctors')
+          .doc(event.doctorModel.uid)
+          .update(event.doctorModel.toJson());
+      emit(DoctorRegisterSuccessState());
+    } on Exception catch (e) {
+      log("Unexpected error: $e");
+      emit(AuthError(message: "حدث خطأ غير متوقع، يرجى المحاولة لاحقًا"));
+    }
+  }
 }
