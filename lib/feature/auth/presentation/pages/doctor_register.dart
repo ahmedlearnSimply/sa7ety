@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields
 import 'dart:developer';
 import 'dart:io'; // Required to use File
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ import 'package:sa7ety/feature/auth/data/doctor_model.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_state.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 
 class DoctorRegister extends StatefulWidget {
   const DoctorRegister({super.key});
@@ -30,6 +32,35 @@ class _DoctorRegisterState extends State<DoctorRegister> {
 
   Future<void> _getUser() async {
     userID = FirebaseAuth.instance.currentUser!.uid;
+  }
+
+  void testUpload() async {
+    File testImage = File('/storage/emulated/0/DCIM/Camera/test.jpg');
+    String userId = "test_user_123";
+
+    String? url = await uploadImageToSupabase(testImage, userId);
+    log("Test Upload Image URL: $url");
+  }
+
+  //! upload image to supabase
+  Future<String?> uploadImageToSupabase(File imageFile, String userId) async {
+    try {
+      final supabase = Supabase.instance.client;
+      final imageName = "doctor_$userId.jpg";
+
+      // ✅ Ensure correct bucket name & add file options
+      await supabase.storage
+          .from('sa7ety1')
+          .upload(imageName, imageFile, fileOptions: FileOptions(upsert: true));
+
+      // ✅ Get Public URL
+      final imageUrl = supabase.storage.from('sa7ety1').getPublicUrl(imageName);
+      log("Uploaded Image URL: $imageUrl"); // Debugging line
+      return imageUrl;
+    } catch (error) {
+      log("Error uploading image: $error");
+      return null;
+    }
   }
 
   //! for image picker
@@ -145,6 +176,7 @@ class _DoctorRegisterState extends State<DoctorRegister> {
   @override
   void initState() {
     _getUser();
+
     super.initState();
   }
 
@@ -508,12 +540,17 @@ class _DoctorRegisterState extends State<DoctorRegister> {
               onPressed: () async {
                 if (_formKey.currentState!.validate() && _image != null) {
                   _getUser();
-
+                  String? profileUrl =
+                      await uploadImageToSupabase(_image!, userID!);
+                  log(profileUrl.toString());
+                  final supabase = Supabase.instance.client;
+                  final buckets = await supabase.storage.listBuckets();
+                  log("Available Buckets: $buckets");
                   context.read<AuthBloc>().add(
                         UpdateDoctorDataEvent(
                           doctorModel: DoctorModel(
                             uid: userID,
-                            // image: profileUrl,
+                            image: profileUrl,
                             phone1: _phone1.text,
                             phone2: _phone2.text,
                             address: _address.text,
