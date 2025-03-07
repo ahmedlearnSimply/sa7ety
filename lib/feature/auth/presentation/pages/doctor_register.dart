@@ -34,35 +34,6 @@ class _DoctorRegisterState extends State<DoctorRegister> {
     userID = FirebaseAuth.instance.currentUser!.uid;
   }
 
-  void testUpload() async {
-    File testImage = File('/storage/emulated/0/DCIM/Camera/test.jpg');
-    String userId = "test_user_123";
-
-    String? url = await uploadImageToSupabase(testImage, userId);
-    log("Test Upload Image URL: $url");
-  }
-
-  //! upload image to supabase
-  Future<String?> uploadImageToSupabase(File imageFile, String userId) async {
-    try {
-      final supabase = Supabase.instance.client;
-      final imageName = "doctor_$userId.jpg";
-
-      // ✅ Ensure correct bucket name & add file options
-      await supabase.storage
-          .from('sa7ety1')
-          .upload(imageName, imageFile, fileOptions: FileOptions(upsert: true));
-
-      // ✅ Get Public URL
-      final imageUrl = supabase.storage.from('sa7ety1').getPublicUrl(imageName);
-      log("Uploaded Image URL: $imageUrl"); // Debugging line
-      return imageUrl;
-    } catch (error) {
-      log("Error uploading image: $error");
-      return null;
-    }
-  }
-
   //! for image picker
   File? _image;
   final ImagePicker _picker = ImagePicker();
@@ -171,6 +142,35 @@ class _DoctorRegisterState extends State<DoctorRegister> {
       DateTime(now.year, now.month, now.day, time.hour, time.minute),
     );
     return formattedTime;
+  }
+
+  //! upload image to supabase
+  Future<String?> uploadImageToSupabase(File imageFile, String userId) async {
+    try {
+      final supabase = Supabase.instance.client;
+      final imageName = "doctor_$userId.jpg";
+
+      // ✅ Ensure correct bucket name & add file options
+      await supabase.storage
+          .from('sa7ety1')
+          .upload(imageName, imageFile, fileOptions: FileOptions(upsert: true));
+
+      // ✅ Get Public URL
+      final imageUrl = supabase.storage.from('sa7ety1').getPublicUrl(imageName);
+      log("Uploaded Image URL: $imageUrl"); // Debugging line
+      return imageUrl;
+    } catch (error) {
+      log("Error uploading image: $error");
+      return null;
+    }
+  }
+
+  void testUpload() async {
+    File testImage = File('/storage/emulated/0/DCIM/Camera/test.jpg');
+    String userId = "test_user_123";
+
+    String? url = await uploadImageToSupabase(testImage, userId);
+    log("Test Upload Image URL: $url");
   }
 
   @override
