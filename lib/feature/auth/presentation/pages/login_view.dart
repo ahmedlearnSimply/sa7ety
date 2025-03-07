@@ -16,6 +16,7 @@ import 'package:sa7ety/core/widgets/custom_button.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_state.dart';
+import 'package:sa7ety/feature/auth/presentation/pages/doctor_register.dart';
 import 'package:sa7ety/feature/auth/presentation/pages/sign_up.dart';
 
 class LoginView extends StatefulWidget {
@@ -55,7 +56,12 @@ class _LoginViewState extends State<LoginView> {
           if (state is LoginLoadingState) {
             showLoadingDialog(context);
           } else if (state is LoginSuccessState) {
-            Navigator.pop(context);
+            if (widget.userType == UserType.doctor) {
+              pushAndRemoveUntil(context, DoctorRegister());
+            } else {
+              //* home page for patient
+            }
+            // Navigator.pop(context);
             log("Success");
           } else if (state is AuthError) {
             Navigator.pop(context);
