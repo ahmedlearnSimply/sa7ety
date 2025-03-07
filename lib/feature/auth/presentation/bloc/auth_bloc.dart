@@ -107,7 +107,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> updateDoctorData(
       UpdateDoctorDataEvent event, Emitter<AuthState> emit) async {
+    log(event.doctorModel.uid.toString());
+
     emit(DoctorRegisterLoadingState());
+
     try {
       await FirebaseFirestore.instance
           .collection('doctors')

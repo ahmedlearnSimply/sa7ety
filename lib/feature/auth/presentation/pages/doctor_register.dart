@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields
+import 'dart:developer';
 import 'dart:io'; // Required to use File
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -139,6 +140,12 @@ class _DoctorRegisterState extends State<DoctorRegister> {
       DateTime(now.year, now.month, now.day, time.hour, time.minute),
     );
     return formattedTime;
+  }
+
+  @override
+  void initState() {
+    _getUser();
+    super.initState();
   }
 
   @override
@@ -500,6 +507,8 @@ class _DoctorRegisterState extends State<DoctorRegister> {
               ),
               onPressed: () async {
                 if (_formKey.currentState!.validate() && _image != null) {
+                  _getUser();
+
                   context.read<AuthBloc>().add(
                         UpdateDoctorDataEvent(
                           doctorModel: DoctorModel(
