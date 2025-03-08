@@ -18,6 +18,7 @@ import 'package:sa7ety/feature/auth/presentation/bloc/auth_event.dart';
 import 'package:sa7ety/feature/auth/presentation/bloc/auth_state.dart';
 import 'package:sa7ety/feature/auth/presentation/pages/doctor_register.dart';
 import 'package:sa7ety/feature/auth/presentation/pages/sign_up.dart';
+import 'package:sa7ety/feature/doctor/home/home_page.dart';
 
 class LoginView extends StatefulWidget {
   final UserType userType;
@@ -59,7 +60,7 @@ class _LoginViewState extends State<LoginView> {
             if (widget.userType == UserType.doctor) {
               pushAndRemoveUntil(context, DoctorRegister());
             } else {
-              //* home page for patient
+              pushAndRemoveUntil(context, HomePage());
             }
             // Navigator.pop(context);
             log("Success");
